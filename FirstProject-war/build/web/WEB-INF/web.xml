@@ -2,11 +2,27 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Creation</servlet-name>
-        <servlet-class>pack2.Creation</servlet-class>
+        <servlet-class>servlets.CreationMarqueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreationMarque</servlet-name>
+        <servlet-class>servlets.CreationMarque</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreationProduit</servlet-name>
+        <servlet-class>servlets.CreationProduit</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Creation</servlet-name>
         <url-pattern>/Creation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreationMarque</servlet-name>
+        <url-pattern>/CreationMarque</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreationProduit</servlet-name>
+        <url-pattern>/CreationProduit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,6 +5,7 @@
  */
 package pack1;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +28,56 @@ public class MarqueFacade extends AbstractFacade<Marque> {
     public MarqueFacade() {
         super(Marque.class);
     }
+    
+    public  Boolean créer(String nom,String origine){
+        Marque marque = em.find(Marque.class, nom);
+        if(marque !=null) return false;
+         marque = new Marque(nom,origine);
+        try{
+            em.persist(marque);
+            return true;
+        }
+       catch(Exception e){
+          
+           return false;
+       }
+        
+    }
+    
+    
+    
+    public Boolean Supprimer(String nom, String origine){
+        Marque marque = em.find(Marque.class, nom);
+         if(marque !=null) return false;
+         marque = new Marque(nom,origine);
+        try{
+            em.remove(marque);
+            return true;
+        }
+       catch(Exception e){
+          
+           return false;
+       }
+         
+        
+    }
+    
+    
+    public List<Produit> getProduitByMarque(String nom){
+        Marque marque = em.find(Marque.class, nom);
+        return marque.getProduits();
+        
+    }
+    
+    public Marque getMarqueByName(String name){
+        return em.find(Marque.class, name);
+    }
+    
+    public void addProduct(Marque marque, Produit produit){
+        marque.getProduits().add(produit);
+        em.merge(marque);
+    }
+    
+    
     
 }

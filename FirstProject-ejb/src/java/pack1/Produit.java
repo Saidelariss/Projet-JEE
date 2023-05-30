@@ -24,7 +24,7 @@ public class Produit implements Serializable {
     private String reference;
     
     @ManyToOne
-    private String marque;
+    private Marque marque;
     
     private String denomination;
     
@@ -41,7 +41,7 @@ public class Produit implements Serializable {
         
     }
 
-    public Produit(String reference, String marque, String denomination, int prix, double poids, double volume) {
+    public Produit(String reference, Marque marque, String denomination, int prix, double poids, double volume) {
         this.reference = reference;
         this.marque = marque;
         this.denomination = denomination;
@@ -119,7 +119,7 @@ public class Produit implements Serializable {
      *
      * @return the value of marque
      */
-    public String getMarque() {
+    public Marque getMarque() {
         return marque;
     }
 
@@ -128,7 +128,7 @@ public class Produit implements Serializable {
      *
      * @param marque new value of marque
      */
-    public void setMarque(String marque) {
+    public void setMarque(Marque marque) {
         this.marque = marque;
     }
 

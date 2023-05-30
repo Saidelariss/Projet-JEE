@@ -3,20 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pack2;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pack1.MarqueFacade;
 
 /**
  *
- * @author user
+ * @author hp
  */
-public class Creation extends HttpServlet {
+public class CreationMarque extends HttpServlet {
+
+    @EJB
+    private MarqueFacade marqueFacade;
+    
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +42,10 @@ public class Creation extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Creation</title>");            
+            out.println("<title>Servlet CreationMarque</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Creation at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CreationMarque at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -54,9 +61,15 @@ public class Creation extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.getWriter().println("<html><body>");
+        response.getWriter().println("<form action=\"\" method=\"post\">");
+        response.getWriter().println("Nom de la marque: <input type=\"text\" name=\"nom\"><br>");
+        response.getWriter().println("Pays d'origine: <input type=\"text\" name=\"pays\"><br>");
+        response.getWriter().println("<input type=\"submit\" value=\"Créer\">");
+        response.getWriter().println("</form>");
+        response.getWriter().println("</body></html>");
     }
 
     /**
@@ -70,7 +83,22 @@ public class Creation extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // Récupération des données du formulaire
+        String nom = request.getParameter("nom");
+        String pays = request.getParameter("pays");
+
+        // Appel à la méthode de création de la marque
+        boolean creationReussie = marqueFacade.créer(nom, pays);
+
+        // Affichage du message de confirmation ou d'erreur
+        response.setContentType("text/html");
+        response.getWriter().println("<html><body>");
+        if (creationReussie) {
+            response.getWriter().println("La marque a été créée avec succès.");
+        } else {
+            response.getWriter().println("Erreur lors de la création de la marque.");
+        }
+        response.getWriter().println("</body></html>");
     }
 
     /**
