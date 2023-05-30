@@ -15,10 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pack1.Marque;
-import pack1.MarqueFacade;
-import pack1.Produit;
-import pack1.ProduitFacade;
+import entities.Marque;
+import facades.MarqueFacade;
+import entities.Produit;
+import facades.ProduitFacade;
 
 /**
  *
@@ -92,9 +92,9 @@ public class CreationProduit extends HttpServlet {
         response.getWriter().println("</select><br>");
 
         response.getWriter().println("Dénomination du produit: <input type=\"text\" name=\"denomination\"><br>");
-        response.getWriter().println("Prix du produit: <input type=\"text\" name=\"prix\"><br>");
-        response.getWriter().println("Poids du produit: <input type=\"text\" name=\"poids\"><br>");
-        response.getWriter().println("Volume du produit: <input type=\"text\" name=\"volume\"><br>");
+        response.getWriter().println("Prix du produit: <input type=\"number\" name=\"prix\"><br>");
+        response.getWriter().println("Poids du produit: <input type=\"number\" name=\"poids\"><br>");
+        response.getWriter().println("Volume du produit: <input type=\"number\" name=\"volume\"><br>");
         response.getWriter().println("<input type=\"submit\" value=\"Créer\">");
         response.getWriter().println("</form>");
         response.getWriter().println("</body></html>");

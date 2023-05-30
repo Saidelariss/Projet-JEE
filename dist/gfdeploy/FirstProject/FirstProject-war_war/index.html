@@ -6,11 +6,30 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Gestion de stocke</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            button {
+                background-color : greenyellow ; 
+                color : white ; 
+            }
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <h2>Bienvunue dans notre application de getion de stocke</h2>
+            <form action="http://localhost:8080/FirstProject-war/CreationMarque" 
+                  style ="margin: 20px ; "
+                  >
+                <button>Ajouter une marque</button>
+            </form>
+            <form action="http://localhost:8080/FirstProject-war/CreationProduit"
+                  style ="margin: 20px ;"
+                  >
+                <button>Ajouter une produit</button>
+            </form>
+        </div>
     </body>
 </html>
